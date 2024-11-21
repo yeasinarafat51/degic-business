@@ -20,7 +20,7 @@ export default function Nabvar() {
     return (
         <>
             <AppBar elevation={0} className='Navbar' position='static' sx={{backgroundColor:"white", color:"black", borderBottom:"1px solid #fafafa"}}>
-                <Toolbar>
+                <Toolbar >
                     {IsMobile ? (
                         <div>
                             <IconButton color='inherit' onClick={()=> setOpen(true) } >
@@ -28,12 +28,11 @@ export default function Nabvar() {
                             </IconButton>
                         </div>
                     ) : (
-                        <>
-                            <Typography sx={{flexGrow:1}}>
-                                <img className='w-[233px] h-[221px]' src={desk} alt="" />
-                            </Typography>
+                        <div className='flex w-full items-center justify-between'>
+                           <img className='w-1/6' src={desk} alt="" />
     
-                            {menuItems.map((item) => (
+                          <div className='flex items-center'>
+                          {menuItems.map((item) => (
                                 <Button color='inherit' key={item} >{item}</Button>
                             ))}
                             <Button variant='outlined'
@@ -48,7 +47,9 @@ export default function Nabvar() {
     
                                 Sign Up
                             </Button>
-                        </>
+                          </div>
+                        
+                        </div>
                     )}
                 </Toolbar>
             </AppBar>
