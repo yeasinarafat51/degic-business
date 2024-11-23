@@ -1,71 +1,20 @@
-import React, { useState } from 'react';
-import {AppBar, Toolbar, Typography,IconButton, Button, Drawer,List, ListItem, ListItemText, useMediaQuery } from "@mui/material"; 
-import MenuIcon from "@mui/icons-material/Menu";
-import { useTheme } from '@mui/material/styles';
-
-import desk from '../img/degic 1.png'
+/* eslint-disable react/prop-types */
 
 
+const Navbar = ({ toggleDarkMode }) => {
+  return (
+    <nav className="bg-blue-500 dark:bg-gray-900 text-white p-4 shadow-md">
+      <div className="container mx-auto flex justify-between items-center">
+        <h1 className="text-xl font-bold">Property Dashboard</h1>
+        <button
+          onClick={toggleDarkMode}
+          className="bg-gray-700 px-3 py-1 rounded text-sm hover:bg-gray-600"
+        >
+          Toggle Dark Mode
+        </button>
+      </div>
+    </nav>
+  );
+};
 
-
-
-
-export default function Nabvar() {
-  
-    const  [open, setOpen] = useState(false); 
-    const Theme  = useTheme(); 
-    const IsMobile = useMediaQuery(Theme.breakpoints.down("sm"))
-    const menuItems = ["About", "Services","Projects", "Contacts" ];
-
-    return (
-        <>
-            <AppBar elevation={0} className='Navbar' position='static' sx={{backgroundColor:"white", color:"black", borderBottom:"1px solid #fafafa"}}>
-                <Toolbar >
-                    {IsMobile ? (
-                        <div>
-                            <IconButton color='inherit' onClick={()=> setOpen(true) } >
-                                <MenuIcon />
-                            </IconButton>
-                        </div>
-                    ) : (
-                        <div className='flex w-full items-center justify-between'>
-                           <img className='w-1/6' src={desk} alt="" />
-    
-                          <div className='flex items-center'>
-                          {menuItems.map((item) => (
-                                <Button color='inherit' key={item} >{item}</Button>
-                            ))}
-                            <Button variant='outlined'
-                             sx={{
-                                color:"#2AB691",
-                                backgroundColor: "white",
-                                borderRadius:"10px",
-                                "&:hover": {
-                                    backgroundColor:"#2AB666",
-                                    color:"white"
-                                }}}>
-    
-                                Sign Up
-                            </Button>
-                          </div>
-                        
-                        </div>
-                    )}
-                </Toolbar>
-            </AppBar>
-    
-            <Drawer anchor='left' open={open} onClose={()=> setOpen(false) }>
-                <List>
-                    {menuItems.map((item)=>(
-                        <ListItem button key={item} onClick={()=> setOpen(false)}>
-                            <ListItemText>{item}</ListItemText>
-                        </ListItem>
-                    ) )}
-    
-                    <ListItem button> <ListItemText primary="Sign up" />  </ListItem>
-                </List>        
-                
-            </Drawer>
-        </>
-      )
-    }
+export default Navbar;
